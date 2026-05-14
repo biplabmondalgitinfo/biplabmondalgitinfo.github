@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Biplab Mondal — Data Analyst | Transcription | Translation | Data Entry</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --navy:#0a1628;
+  --deep:#0d1f3c;
+  --accent:#00c9a7;
+  --gold:#f5c842;
+  --muted:#7a8fa6;
+  --light:#e8f0fe;
+  --white:#ffffff;
+  --card:#111e33;
+  --border:rgba(0,201,167,0.18);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--navy);color:var(--white);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;display:flex;align-items:center;justify-content:space-between;padding:18px 60px;background:rgba(10,22,40,0.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--accent);letter-spacing:1px;}
+.logo span{color:var(--gold);}
+nav ul{list-style:none;display:flex;gap:36px;}
+nav ul a{color:var(--muted);text-decoration:none;font-size:.88rem;font-weight:500;letter-spacing:.5px;text-transform:uppercase;transition:color .3s;}
+nav ul a:hover,nav ul a.active{color:var(--accent);}
+.nav-cta{background:var(--accent);color:var(--navy)!important;padding:8px 20px;border-radius:4px;font-weight:600!important;}
+.nav-cta:hover{background:var(--gold)!important;color:var(--navy)!important;}
+
+/* ── PAGE SYSTEM ── */
+.page{display:none;min-height:100vh;padding-top:80px;animation:fadeIn .5s ease;}
+.page.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── HOME PAGE ── */
+.hero{min-height:calc(100vh - 80px);display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:60px 60px 60px 80px;gap:60px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;right:-200px;top:-200px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(0,201,167,.12) 0%,transparent 70%);pointer-events:none;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,201,167,.12);border:1px solid var(--border);border-radius:100px;padding:6px 16px;font-size:.78rem;color:var(--accent);font-family:'JetBrains Mono',monospace;margin-bottom:20px;}
+.hero-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--accent);animation:blink 1.4s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,4vw,3.8rem);line-height:1.12;font-weight:900;margin-bottom:18px;}
+.hero h1 span{color:var(--accent);}
+.hero-sub{font-size:1.05rem;color:var(--muted);line-height:1.75;margin-bottom:32px;max-width:480px;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px;}
+.tag{background:rgba(245,200,66,.08);border:1px solid rgba(245,200,66,.2);color:var(--gold);border-radius:4px;padding:4px 12px;font-size:.78rem;font-family:'JetBrains Mono',monospace;}
+.btn-row{display:flex;gap:16px;flex-wrap:wrap;}
+.btn{padding:13px 28px;border-radius:6px;font-weight:600;font-size:.92rem;cursor:pointer;border:none;text-decoration:none;display:inline-block;transition:all .25s;}
+.btn-primary{background:var(--accent);color:var(--navy);}
+.btn-primary:hover{background:var(--gold);transform:translateY(-2px);}
+.btn-outline{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.25);}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+.hero-visual{position:relative;display:flex;justify-content:center;}
+.profile-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px;text-align:center;position:relative;overflow:hidden;max-width:340px;width:100%;}
+.profile-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--gold));}
+.avatar{width:110px;height:110px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;color:var(--navy);margin:0 auto 20px;}
+.profile-name{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:6px;}
+.profile-title{font-size:.82rem;color:var(--accent);font-family:'JetBrains Mono',monospace;margin-bottom:20px;}
+.stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:20px;}
+.stat{background:rgba(255,255,255,.04);border-radius:8px;padding:12px 8px;}
+.stat-num{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--accent);}
+.stat-label{font-size:.7rem;color:var(--muted);margin-top:3px;}
+.contact-strip{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;justify-content:center;}
+.c-chip{font-size:.72rem;background:rgba(0,201,167,.1);border:1px solid var(--border);border-radius:100px;padding:4px 12px;color:var(--light);}
+
+/* Floating badges */
+.float-badge{position:absolute;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 16px;font-size:.75rem;white-space:nowrap;}
+.fb1{top:-20px;right:-30px;color:var(--accent);}
+.fb2{bottom:30px;left:-40px;color:var(--gold);}
+
+/* ── SERVICES SECTION ── */
+.services-section{padding:60px 80px 40px;}
+.services-eyebrow{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:28px;}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.svc-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px;transition:transform .25s,border-color .25s;}
+.svc-card:hover{transform:translateY(-4px);border-color:var(--accent);}
+.svc-icon{font-size:1.8rem;margin-bottom:12px;}
+.svc-title{font-family:'Playfair Display',serif;font-size:1.05rem;margin-bottom:8px;color:var(--white);}
+.svc-desc{font-size:.82rem;color:var(--muted);line-height:1.7;}
+@media(max-width:900px){.services-section{padding:40px 24px;}.services-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:580px){.services-grid{grid-template-columns:1fr;}}
+
+/* ── STATS BAR ── */
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.s-item{background:var(--navy);padding:28px 40px;text-align:center;}
+.s-num{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--accent);}
+.s-label{font-size:.8rem;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.5px;}
+
+/* ── ABOUT PAGE ── */
+.page-header{padding:70px 80px 40px;border-bottom:1px solid var(--border);}
+.ph-eyebrow{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;}
+.ph-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3vw,3rem);font-weight:900;}
+.ph-title span{color:var(--accent);}
+.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;padding:60px 80px;align-items:start;}
+.about-text p{color:var(--muted);line-height:1.85;margin-bottom:20px;font-size:.97rem;}
+.about-text h3{font-family:'Playfair Display',serif;font-size:1.4rem;margin:30px 0 14px;color:var(--white);}
+.skill-group{margin-bottom:28px;}
+.sg-label{font-size:.75rem;font-family:'JetBrains Mono',monospace;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+.skill-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.sk{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:5px;padding:5px 13px;font-size:.78rem;color:var(--light);transition:all .2s;}
+.sk:hover{border-color:var(--accent);color:var(--accent);}
+.timeline{padding:0;}
+.tl-item{display:flex;gap:20px;padding:24px 0;border-bottom:1px solid rgba(255,255,255,.06);}
+.tl-dot{width:12px;height:12px;border-radius:50%;background:var(--accent);margin-top:5px;flex-shrink:0;}
+.tl-content h4{font-size:1rem;font-weight:600;margin-bottom:4px;}
+.tl-content .tl-co{font-size:.82rem;color:var(--accent);font-family:'JetBrains Mono',monospace;}
+.tl-content .tl-date{font-size:.75rem;color:var(--muted);margin-bottom:8px;}
+.tl-content p{font-size:.85rem;color:var(--muted);line-height:1.7;}
+
+/* ── PROJECTS PAGE ── */
+.projects-grid{padding:60px 80px;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:28px;}
+.proj-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:transform .3s,border-color .3s;cursor:pointer;}
+.proj-card:hover{transform:translateY(-6px);border-color:var(--accent);}
+.proj-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden;}
+.pi-1{background:linear-gradient(135deg,#0d2a3d,#003d35);}
+.pi-2{background:linear-gradient(135deg,#1a2a0d,#2a3d00);}
+.pi-3{background:linear-gradient(135deg,#2a1a0d,#3d2a00);}
+.proj-body{padding:24px;}
+.proj-cat{font-size:.7rem;font-family:'JetBrains Mono',monospace;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.proj-title{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:10px;}
+.proj-desc{font-size:.84rem;color:var(--muted);line-height:1.7;margin-bottom:16px;}
+.proj-stack{display:flex;flex-wrap:wrap;gap:6px;}
+.ps{background:rgba(0,201,167,.1);border:1px solid rgba(0,201,167,.2);border-radius:4px;padding:3px 10px;font-size:.72rem;color:var(--accent);}
+.proj-result{margin-top:14px;padding:10px 14px;background:rgba(245,200,66,.07);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;font-size:.8rem;color:var(--gold);}
+
+/* ── CONTACT PAGE ── */
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;padding:60px 80px;align-items:start;}
+.contact-info h3{font-family:'Playfair Display',serif;font-size:1.6rem;margin-bottom:16px;}
+.contact-info p{color:var(--muted);line-height:1.8;margin-bottom:32px;font-size:.95rem;}
+.c-links{display:flex;flex-direction:column;gap:16px;}
+.c-link{display:flex;align-items:center;gap:16px;text-decoration:none;color:var(--white);padding:16px 20px;background:var(--card);border:1px solid var(--border);border-radius:10px;transition:all .25s;}
+.c-link:hover{border-color:var(--accent);transform:translateX(4px);}
+.c-link-icon{width:42px;height:42px;border-radius:8px;background:rgba(0,201,167,.12);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.c-link-label{font-size:.75rem;color:var(--muted);}
+.c-link-val{font-size:.9rem;font-weight:500;}
+.contact-form{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:36px;}
+.contact-form h3{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:24px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-group{margin-bottom:20px;}
+.form-group label{display:block;font-size:.78rem;color:var(--muted);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.form-group input,.form-group textarea,.form-group select{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:12px 16px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:.9rem;outline:none;transition:border-color .25s;}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--accent);}
+.form-group textarea{height:110px;resize:vertical;}
+.form-submit{width:100%;padding:14px;background:var(--accent);color:var(--navy);border:none;border-radius:8px;font-weight:700;font-size:.95rem;cursor:pointer;transition:all .25s;}
+.form-submit:hover{background:var(--gold);}
+.availability{display:inline-flex;align-items:center;gap:8px;margin-top:24px;padding:10px 18px;background:rgba(0,201,167,.08);border:1px solid var(--border);border-radius:100px;font-size:.8rem;color:var(--accent);}
+.availability::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--accent);animation:blink 1.4s infinite;}
+
+/* ── FOOTER ── */
+footer{padding:32px 80px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.foot-copy{font-size:.8rem;color:var(--muted);}
+.foot-links{display:flex;gap:20px;}
+.foot-links a{font-size:.8rem;color:var(--muted);text-decoration:none;transition:color .2s;}
+.foot-links a:hover{color:var(--accent);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:16px 24px;}
+  nav ul{gap:18px;}
+  .hero{grid-template-columns:1fr;padding:40px 24px;text-align:center;}
+  .hero-visual{display:none;}
+  .hero-sub{max-width:100%;}
+  .btn-row{justify-content:center;}
+  .stats-bar{grid-template-columns:1fr 1fr;}
+  .page-header,.about-grid,.projects-grid,.contact-wrap{padding:40px 24px;}
+  .about-grid,.contact-wrap{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+  footer{padding:24px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">BM<span>.</span></div>
+  <ul>
+    <li><a href="#" onclick="show('home')" class="active" id="nav-home">Home</a></li>
+    <li><a href="#" onclick="show('about')" id="nav-about">About</a></li>
+    <li><a href="#" onclick="show('projects')" id="nav-projects">Projects</a></li>
+    <li><a href="#" onclick="show('contact')" id="nav-contact" class="nav-cta">Hire Me</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════ HOME PAGE ═══════════════ -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-badge">● Available for Remote Roles</div>
+      <h1>Turning Data Into<br/><span>Decisions.</span></h1>
+      <p class="hero-sub">I'm <strong>Biplab Mondal</strong> — a Data Analyst, BI Specialist & multilingual content professional based in Kolkata. I build dashboards, deliver precise transcription &amp; translation (English · Bengali · Hindi), and handle high-volume data entry with 99.8% accuracy.</p>
+      <div class="hero-tags">
+        <span class="tag">SQL</span>
+        <span class="tag">Python</span>
+        <span class="tag">Power BI</span>
+        <span class="tag">Tableau</span>
+        <span class="tag">ETL</span>
+        <span class="tag">Advanced Excel</span>
+        <span class="tag">Data Entry</span>
+        <span class="tag">Transcription</span>
+        <span class="tag">Translation</span>
+        <span class="tag">Data Labelling</span>
+        <span class="tag">Search Quality Rating</span>
+        <span class="tag">AI & GenAI</span>
+      </div>
+      <div class="btn-row">
+        <a href="#" class="btn btn-primary" onclick="show('projects')">View My Work</a>
+        <a href="#" class="btn btn-outline" onclick="show('contact')">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="float-badge fb1">📊 Power BI • DAX • Drill-Through</div>
+      <div class="profile-card">
+        <div class="avatar">BM</div>
+        <div class="profile-name">Biplab Mondal</div>
+        <div class="profile-title">Data Analyst · Transcription · Translation</div>
+        <div class="contact-strip">
+          <span class="c-chip">📍 Kolkata, India</span>
+          <span class="c-chip">🌐 Remote Ready</span>
+          <span class="c-chip">⚡ Immediate</span>
+          <span class="c-chip">🗣️ EN · BN · HI</span>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><div class="stat-num">2+</div><div class="stat-label">Years</div></div>
+          <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Tools</div></div>
+          <div class="stat"><div class="stat-num">98%</div><div class="stat-label">Accuracy</div></div>
+        </div>
+      </div>
+      <div class="float-badge fb2">🐍 Python · Pandas · NumPy</div>
+    </div>
+  </section>
+
+  <div class="services-section">
+    <div class="services-eyebrow">// what I offer</div>
+    <div class="services-grid">
+      <div class="svc-card">
+        <div class="svc-icon">📊</div>
+        <div class="svc-title">Data Analysis & BI</div>
+        <div class="svc-desc">SQL, Python, Power BI, Tableau dashboards. ETL pipelines, EDA, A/B testing, and actionable stakeholder reporting.</div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">⌨️</div>
+        <div class="svc-title">Data Entry</div>
+        <div class="svc-desc">High-volume remote data entry with 99.8% accuracy. CRM input, spreadsheet management, record cleaning & formatting.</div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🎙️</div>
+        <div class="svc-title">Transcription</div>
+        <div class="svc-desc">Audio & video transcription in English, Bengali, and Hindi. Verbatim, clean-read, timestamped, and speaker-labelled formats.</div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🌐</div>
+        <div class="svc-title">Translation</div>
+        <div class="svc-desc">Written translation & localisation across English ↔ Bengali ↔ Hindi. Documents, web content, business communications & search evaluation.</div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🤖</div>
+        <div class="svc-title">AI Data Annotation</div>
+        <div class="svc-desc">Image/video labelling, NLP annotation, search quality rating (RATER), LLM output evaluation, and RLHF data generation.</div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🏷️</div>
+        <div class="svc-title">Data Labelling</div>
+        <div class="svc-desc">Bounding boxes, polygon & semantic segmentation, keypoint/pose estimation, named entity recognition (NER), intent & sentiment labelling — across image, text, audio, and video modalities.</div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🔍</div>
+        <div class="svc-title">Search Quality Rating</div>
+        <div class="svc-desc">Web &amp; app content evaluation using Google RATER guidelines. Relevance rating, Page Quality (PQ), Needs Met (NM), E-E-A-T assessment, search engine evaluation, and locale-specific query rating (EN · BN · HI).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="s-item"><div class="s-num">2,500+</div><div class="s-label">Records Analysed</div></div>
+    <div class="s-item"><div class="s-num">10%</div><div class="s-label">Downtime Reduction</div></div>
+    <div class="s-item"><div class="s-num">40%</div><div class="s-label">Effort Automated</div></div>
+    <div class="s-item"><div class="s-num">99.8%</div><div class="s-label">Data Accuracy</div></div>
+  </div>
+
+  <footer>
+    <div class="foot-copy">© 2025 Biplab Mondal. All rights reserved.</div>
+    <div class="foot-links">
+      <a href="https://linkedin.com/in/biplabgen" target="_blank">LinkedIn</a>
+      <a href="https://github.com/biplabmondalgitinfo" target="_blank">GitHub</a>
+      <a href="mailto:biplabmondalinfo@gmail.com">Email</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════ ABOUT PAGE ═══════════════ -->
+<div class="page" id="page-about">
+  <div class="page-header">
+    <div class="ph-eyebrow">// who I am</div>
+    <h1 class="ph-title">About <span>Me</span></h1>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a results-driven <strong>Data Analyst & Business Intelligence specialist</strong> with 2+ years of hands-on experience turning complex datasets into clear, actionable insights. Based in Kolkata, I work entirely remotely with clients and teams worldwide.</p>
+      <p>My background spans manufacturing analytics, financial services, and AI/ML data preparation — giving me a uniquely versatile perspective on data problems. I'm passionate about building interactive dashboards and ETL pipelines that drive real operational change.</p>
+      <p>Beyond analytics, I bring 6 years of high-precision data management experience and a track record in financial advisory — which means I understand both the technical and business sides of every insight I deliver.</p>
+
+      <h3>Technical Skills</h3>
+      <div class="skill-group">
+        <div class="sg-label">SQL & Databases</div>
+        <div class="skill-chips">
+          <span class="sk">MySQL</span><span class="sk">PostgreSQL</span><span class="sk">Window Functions</span><span class="sk">Query Optimization</span><span class="sk">ETL Pipelines</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-label">BI & Visualization</div>
+        <div class="skill-chips">
+          <span class="sk">Power BI</span><span class="sk">DAX</span><span class="sk">Tableau</span><span class="sk">Looker</span><span class="sk">Google Data Studio</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-label">Programming</div>
+        <div class="skill-chips">
+          <span class="sk">Python</span><span class="sk">Pandas</span><span class="sk">NumPy</span><span class="sk">Matplotlib</span><span class="sk">Scikit-learn</span><span class="sk">R (Basic)</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-label">Cloud & Warehousing</div>
+        <div class="skill-chips">
+          <span class="sk">BigQuery</span><span class="sk">Snowflake</span><span class="sk">Redshift</span><span class="sk">Data Modeling</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-label">AI & Emerging Tech</div>
+        <div class="skill-chips">
+          <span class="sk">Generative AI</span><span class="sk">Prompt Engineering</span><span class="sk">ChatGPT Analytics</span><span class="sk">RLHF</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-label">Data Labelling & Annotation</div>
+        <div class="skill-chips">
+          <span class="sk">Bounding Box</span><span class="sk">Polygon Annotation</span><span class="sk">Semantic Segmentation</span><span class="sk">Instance Segmentation</span><span class="sk">Keypoint / Pose Estimation</span><span class="sk">Object Tracking</span><span class="sk">Named Entity Recognition (NER)</span><span class="sk">Intent Classification</span><span class="sk">Sentiment Tagging</span><span class="sk">Coreference Resolution</span><span class="sk">Audio Annotation</span><span class="sk">CVAT</span><span class="sk">Labelbox</span><span class="sk">Scale AI</span><span class="sk">Amazon MTurk</span><span class="sk">Inter-Annotator Agreement (IAA)</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-label">Search Quality Rating & Evaluation</div>
+        <div class="skill-chips">
+          <span class="sk">Search Quality Rating (SQR)</span><span class="sk">Web &amp; App Content Evaluation</span><span class="sk">Search Engine Evaluation</span><span class="sk">Relevance Rating</span><span class="sk">Google RATER Guidelines</span><span class="sk">Page Quality (PQ)</span><span class="sk">Needs Met (NM)</span><span class="sk">E-E-A-T Assessment</span><span class="sk">Navigational Queries</span><span class="sk">Informational Queries</span><span class="sk">Transactional Queries</span><span class="sk">Content Freshness Evaluation</span><span class="sk">Locale-Specific Rating (EN · BN · HI)</span><span class="sk">Mobile Search Evaluation</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-label">Data Entry & Management</div>
+        <div class="skill-chips">
+          <span class="sk">High-Volume Data Entry</span><span class="sk">99.8% Accuracy</span><span class="sk">MS Office Suite</span><span class="sk">Google Sheets</span><span class="sk">CRM Data Input</span><span class="sk">Record Management</span><span class="sk">Data Formatting</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-label">Transcription</div>
+        <div class="skill-chips">
+          <span class="sk">Audio Transcription</span><span class="sk">Video Transcription</span><span class="sk">Speech Tagging</span><span class="sk">Speaker Diarisation</span><span class="sk">Verbatim & Clean-Read</span><span class="sk">Timestamped Transcripts</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-label">Translation & Localisation</div>
+        <div class="skill-chips">
+          <span class="sk">English ↔ Bengali</span><span class="sk">English ↔ Hindi</span><span class="sk">Bengali ↔ Hindi</span><span class="sk">Localisation</span><span class="sk">Proofreading</span><span class="sk">Cultural Adaptation</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:20px;">Experience</h3>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <h4>Data Analyst Intern</h4>
+            <div class="tl-co">360DigiTMG</div>
+            <div class="tl-date">Mar 2025 – Apr 2025 · Remote</div>
+            <p>Analysed 2,500+ manufacturing records using Python & SQL. Built Power BI dashboards with drill-through capabilities. Contributed to 10% reduction in unplanned machine downtime.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--gold);"></div>
+          <div class="tl-content">
+            <h4>Data Annotation Specialist</h4>
+            <div class="tl-co">Scaled Solutions (Uber)</div>
+            <div class="tl-date">Jan 2025 – Present · Remote</div>
+            <p>Annotating images/videos for autonomous vehicle AI systems. Maintaining 98%+ accuracy rate across high-volume ML training pipelines. Performing transcription verification and audio annotation.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:var(--accent);"></div>
+          <div class="tl-content">
+            <h4>Freelance Data Entry & Transcription Specialist</h4>
+            <div class="tl-co">Self-Employed / Multiple Clients</div>
+            <div class="tl-date">6 Years · Remote</div>
+            <p>Handled large-scale data entry, transcription (audio/video to text), and translation (English, Bengali, Hindi) projects with 99.8% accuracy. Managed CRM data input, document formatting, and record management across diverse platforms.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:#7a8fa6;"></div>
+          <div class="tl-content">
+            <h4>Sales & Trading Analyst (Virtual)</h4>
+            <div class="tl-co">Bank of America — Forage</div>
+            <div class="tl-date">Apr 2025</div>
+            <p>Analysed financial datasets using Advanced Excel & Bloomberg Terminal. Built structured stakeholder reports for portfolio decisions.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:#7a8fa6;"></div>
+          <div class="tl-content">
+            <h4>Excel Skills Specialist (Virtual)</h4>
+            <div class="tl-co">Goldman Sachs — Forage</div>
+            <div class="tl-date">Nov 2024</div>
+            <p>Automated workflows with VBA macros — reducing manual effort by 40%. Designed executive-level KPI dashboards.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot" style="background:#7a8fa6;"></div>
+          <div class="tl-content">
+            <h4>Financial Services Analyst</h4>
+            <div class="tl-co">Birla Sunlife & Shriram Life Insurance</div>
+            <div class="tl-date">4 Years</div>
+            <p>Analysed market trends, client portfolios, and KPIs across equity and insurance products.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="foot-copy">© 2025 Biplab Mondal. All rights reserved.</div>
+    <div class="foot-links">
+      <a href="https://linkedin.com/in/biplabgen" target="_blank">LinkedIn</a>
+      <a href="https://github.com/biplabmondalgitinfo" target="_blank">GitHub</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════ PROJECTS PAGE ═══════════════ -->
+<div class="page" id="page-projects">
+  <div class="page-header">
+    <div class="ph-eyebrow">// what I've built</div>
+    <h1 class="ph-title">My <span>Projects</span></h1>
+  </div>
+  <div class="projects-grid">
+
+    <div class="proj-card">
+      <div class="proj-img pi-1">📊</div>
+      <div class="proj-body">
+        <div class="proj-cat">Manufacturing Analytics</div>
+        <div class="proj-title">Machine Downtime Analytics Dashboard</div>
+        <div class="proj-desc">End-to-end analysis of 2,500+ manufacturing records to uncover root causes of equipment failure. Built interactive Power BI dashboards with drill-through filtering and trend analysis using SQL window functions.</div>
+        <div class="proj-stack">
+          <span class="ps">Power BI</span><span class="ps">Python</span><span class="ps">SQL</span><span class="ps">Pandas</span><span class="ps">DAX</span>
+        </div>
+        <div class="proj-result">⚡ Achieved 10% reduction in unplanned machine downtime</div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-img pi-2">📈</div>
+      <div class="proj-body">
+        <div class="proj-cat">Business Intelligence</div>
+        <div class="proj-title">Sales Performance & KPI Tracker</div>
+        <div class="proj-desc">Dynamic Excel-based BI dashboard with VBA automation, conditional formatting, and interactive slicers for executive-level reporting. Reduced repetitive data processing through macro-driven workflows.</div>
+        <div class="proj-stack">
+          <span class="ps">Advanced Excel</span><span class="ps">VBA Macros</span><span class="ps">Pivot Tables</span><span class="ps">Power Query</span>
+        </div>
+        <div class="proj-result">⚡ 40% reduction in manual reporting effort</div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-img pi-3">🤖</div>
+      <div class="proj-body">
+        <div class="proj-cat">AI/ML — Annotation & Labelling</div>
+        <div class="proj-title">Autonomous Vehicle Annotation Pipeline</div>
+        <div class="proj-desc">High-precision image and video labelling for self-driving AI systems using bounding boxes, polygon annotation, semantic segmentation, and instance segmentation in CVAT. Performed QA peer reviews and flagged edge cases to improve guideline standards.</div>
+        <div class="proj-stack">
+          <span class="ps">CVAT</span><span class="ps">Bounding Box</span><span class="ps">Semantic Segmentation</span><span class="ps">Instance Segmentation</span><span class="ps">QA Review</span>
+        </div>
+        <div class="proj-result">⚡ Sustained 98%+ accuracy · Scaled Solutions (Uber) — Jan 2025–Present</div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-img pi-1">🏷️</div>
+      <div class="proj-body">
+        <div class="proj-cat">Data Labelling — Text, Image & Audio</div>
+        <div class="proj-title">Multi-Modal Data Labelling for ML Training</div>
+        <div class="proj-desc">End-to-end data labelling across image, text, audio, and video modalities for AI/ML model training pipelines. Covered NLP tasks (NER, intent classification, sentiment tagging, coreference resolution), image tasks (keypoint/pose estimation, object tracking), and audio tasks (speech tagging, speaker diarisation labelling). Applied inter-annotator agreement (IAA) analysis and style guide compliance.</div>
+        <div class="proj-stack">
+          <span class="ps">NER</span><span class="ps">Intent Classification</span><span class="ps">Sentiment Tagging</span><span class="ps">Keypoint Estimation</span><span class="ps">Object Tracking</span><span class="ps">Labelbox</span><span class="ps">Scale AI</span><span class="ps">IAA Analysis</span>
+        </div>
+        <div class="proj-result">⚡ Delivered across image, text, audio & video — all modalities covered</div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-img pi-1">💹</div>
+      <div class="proj-body">
+        <div class="proj-cat">Financial Analytics</div>
+        <div class="proj-title">Investment Strategy & Market Analysis</div>
+        <div class="proj-desc">Analysed large financial datasets using Advanced Excel and Bloomberg Terminal to identify investment opportunities, trends, and anomalies in equity and fixed-income markets for sustainable portfolio decisions.</div>
+        <div class="proj-stack">
+          <span class="ps">Bloomberg Terminal</span><span class="ps">Advanced Excel</span><span class="ps">Regression Analysis</span>
+        </div>
+        <div class="proj-result">⚡ Bank of America Forage Virtual Experience — Apr 2025</div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-img pi-2">🔍</div>
+      <div class="proj-body">
+        <div class="proj-cat">Search Quality Rating & Engine Evaluation</div>
+        <div class="proj-title">Search Quality Rating & LLM Evaluation</div>
+        <div class="proj-desc">Professional web &amp; app content evaluation using Google RATER guidelines. Performed relevance rating across navigational, informational, and transactional queries. Assessed Page Quality (PQ), Needs Met (NM), E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness), content freshness, and locale-specific query evaluation in English, Bengali &amp; Hindi. Also evaluated LLM output for factuality, helpfulness, and policy adherence.</div>
+        <div class="proj-stack">
+          <span class="ps">RATER Guidelines</span><span class="ps">Relevance Rating</span><span class="ps">Page Quality (PQ)</span><span class="ps">Needs Met (NM)</span><span class="ps">E-E-A-T</span><span class="ps">Search Engine Evaluation</span><span class="ps">NLP</span><span class="ps">RLHF</span>
+        </div>
+        <div class="proj-result">⚡ Locale-rated in EN · BN · HI — web, app &amp; mobile search evaluation</div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-img pi-3">⚙️</div>
+      <div class="proj-body">
+        <div class="proj-cat">Data Engineering</div>
+        <div class="proj-title">ETL Pipeline & Data Quality Framework</div>
+        <div class="proj-desc">Designed and executed full ETL processes — extraction, cleaning, transformation, and validation — for industrial manufacturing datasets, ensuring high-quality data for downstream reporting and ML modelling.</div>
+        <div class="proj-stack">
+          <span class="ps">Python</span><span class="ps">SQL</span><span class="ps">ETL</span><span class="ps">Data Validation</span><span class="ps">NumPy</span>
+        </div>
+        <div class="proj-result">⚡ 30% reduction in downtime analysis processing time</div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-img pi-1">⌨️</div>
+      <div class="proj-body">
+        <div class="proj-cat">Data Entry & Management</div>
+        <div class="proj-title">High-Volume Data Entry & CRM Management</div>
+        <div class="proj-desc">Six years of large-scale remote data entry across multiple platforms — including CRM systems, spreadsheets, and proprietary databases. Managed data formatting, record cleaning, deduplication, and structured reporting with a consistent 99.8% accuracy rate under strict deadlines.</div>
+        <div class="proj-stack">
+          <span class="ps">MS Excel</span><span class="ps">Google Sheets</span><span class="ps">CRM Systems</span><span class="ps">Data Validation</span><span class="ps">Record Management</span>
+        </div>
+        <div class="proj-result">⚡ 99.8% accuracy sustained across 6 years of freelance projects</div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-img pi-2">🎙️</div>
+      <div class="proj-body">
+        <div class="proj-cat">Transcription</div>
+        <div class="proj-title">Audio & Video Transcription Services</div>
+        <div class="proj-desc">Professional transcription of audio and video content in English, Bengali, and Hindi — including verbatim, clean-read, and timestamped formats. Experienced in speaker diarisation, speech tagging, and transcription verification for AI/ML training pipelines (Scaled Solutions / Uber).</div>
+        <div class="proj-stack">
+          <span class="ps">Audio Transcription</span><span class="ps">Video Transcription</span><span class="ps">Speaker Diarisation</span><span class="ps">Timestamped Output</span>
+        </div>
+        <div class="proj-result">⚡ Delivered for ML training pipelines — 98%+ accuracy maintained</div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-img pi-3">🌐</div>
+      <div class="proj-body">
+        <div class="proj-cat">Translation & Localisation</div>
+        <div class="proj-title">Multilingual Translation — EN · BN · HI</div>
+        <div class="proj-desc">Accurate written translation and localisation across English, Bengali, and Hindi for documents, web content, business communications, and search quality evaluation tasks. Cultural adaptation, proofreading, and locale-specific query evaluation (used in Bing/Google search rating tasks).</div>
+        <div class="proj-stack">
+          <span class="ps">English ↔ Bengali</span><span class="ps">English ↔ Hindi</span><span class="ps">Localisation</span><span class="ps">Proofreading</span><span class="ps">SEO Eval</span>
+        </div>
+        <div class="proj-result">⚡ Applied in Google RATER search quality evaluations</div>
+      </div>
+    </div>
+
+  </div>
+  <footer>
+    <div class="foot-copy">© 2025 Biplab Mondal. All rights reserved.</div>
+    <div class="foot-links">
+      <a href="https://github.com/biplabmondalgitinfo" target="_blank">GitHub</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════ CONTACT PAGE ═══════════════ -->
+<div class="page" id="page-contact">
+  <div class="page-header">
+    <div class="ph-eyebrow">// let's work together</div>
+    <h1 class="ph-title">Get In <span>Touch</span></h1>
+  </div>
+  <div class="contact-wrap">
+    <div class="contact-info">
+      <h3>Open to Remote Opportunities</h3>
+      <p>Whether you need a data analyst, BI dashboard builder, data entry specialist, audio/video transcriptionist, or English–Bengali–Hindi translator — I'm available for freelance contracts, part-time roles, and full-time remote positions. Let's talk.</p>
+      <div class="c-links">
+        <a href="mailto:biplabmondalinfo@gmail.com" class="c-link">
+          <div class="c-link-icon">✉️</div>
+          <div><div class="c-link-label">Email</div><div class="c-link-val">biplabmondalinfo@gmail.com</div></div>
+        </a>
+        <a href="tel:+919933526644" class="c-link">
+          <div class="c-link-icon">📞</div>
+          <div><div class="c-link-label">Phone / WhatsApp</div><div class="c-link-val">+91 99335 26644</div></div>
+        </a>
+        <a href="https://linkedin.com/in/biplabgen" target="_blank" class="c-link">
+          <div class="c-link-icon">💼</div>
+          <div><div class="c-link-label">LinkedIn</div><div class="c-link-val">linkedin.com/in/biplabgen</div></div>
+        </a>
+        <a href="https://github.com/biplabmondalgitinfo" target="_blank" class="c-link">
+          <div class="c-link-icon">🐙</div>
+          <div><div class="c-link-label">GitHub</div><div class="c-link-val">github.com/biplabmondalgitinfo</div></div>
+        </a>
+        <a href="#" class="c-link">
+          <div class="c-link-icon">📍</div>
+          <div><div class="c-link-label">Location</div><div class="c-link-val">Kolkata, West Bengal, India</div></div>
+        </a>
+      </div>
+      <div class="availability">● Open to work — Immediate availability</div>
+    </div>
+
+    <div class="contact-form">
+      <h3>Send a Message</h3>
+      <div class="form-row">
+        <div class="form-group"><label>First Name</label><input type="text" placeholder="Your name"/></div>
+        <div class="form-group"><label>Last Name</label><input type="text" placeholder="Last name"/></div>
+      </div>
+      <div class="form-group"><label>Email Address</label><input type="email" placeholder="your@email.com"/></div>
+      <div class="form-group">
+        <label>I'm looking for</label>
+        <select>
+          <option value="">Select opportunity type</option>
+          <option>Data Analyst (Full-Time Remote)</option>
+          <option>BI Dashboard Development</option>
+          <option>Data Entry (Freelance / Contract)</option>
+          <option>Transcription (Audio / Video)</option>
+          <option>Translation (EN · BN · HI)</option>
+          <option>Data Labelling & Annotation</option>
+          <option>Search Quality Rating / Engine Evaluation</option>
+          <option>Data Annotation Specialist</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Message</label><textarea placeholder="Tell me about your project or role…"></textarea></div>
+      <button class="form-submit" onclick="alert('Message sent! Biplab will reply within 24 hours.')">Send Message ↗</button>
+    </div>
+  </div>
+  <footer>
+    <div class="foot-copy">© 2025 Biplab Mondal. All rights reserved.</div>
+    <div class="foot-links">
+      <a href="https://linkedin.com/in/biplabgen" target="_blank">LinkedIn</a>
+      <a href="https://github.com/biplabmondalgitinfo" target="_blank">GitHub</a>
+      <a href="mailto:biplabmondalinfo@gmail.com">Email</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+function show(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('nav ul a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  document.getElementById('nav-'+page).classList.add('active');
+  window.scrollTo(0,0);
+  return false;
+}
+</script>
+</body>
+</html>
